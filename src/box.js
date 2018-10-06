@@ -6,6 +6,7 @@ export default class Box extends React.Component {
     constructor(props){
         super(props);
         this.state = {isAlive:false};
+        this.nextStepAlive = false;
     }
 
     isAlive = () => this.state.isAlive;
@@ -21,18 +22,28 @@ export default class Box extends React.Component {
         .map((box) => box ? box.ref.current.isAlive() : false);
     }
     
-    update(){
+    nextStep(){
         let num_alive = this
-                .getNeighborhood(this.getRow(), this.getCol(), this.props.size)
-                .map((isAlive)=> isAlive ? 1 : 0)
-                .reduce((prev,next) => prev + next,0);
+        .getNeighborhood(this.getRow(), this.getCol(), this.props.size)
+        .map((isAlive)=> isAlive ? 1 : 0)
+        .reduce((prev,next) => prev + next,0);
 
         if(this.isAlive()){
-            if(num_alive <2) this.setState({isAlive:false});
-            else if(num_alive<=3) this.setState({isAlive:true});
-            else this.setState({isAlive:false});
+            if(num_alive <2) this.nextStepAlive = false; 
+            else if(num_alive<=3) this.nextStepAlive = true;
+            else this.nextStepAlive = false;
         }
-        else if(num_alive===3) this.setState({isAlive:true});
+        else if(num_alive===3) this.nextStepAlive = true;
+    }
+
+    refresh(){
+        if(this.nextStepAlive !== this.state.isAlive)
+            this.setState({isAlive: this.nextStepAlive});
+    }
+
+    clean() {
+        this.setState({isAlive: false});
+        this.nextStepAlive = false;
     }
 
     getClass(){
@@ -44,9 +55,8 @@ export default class Box extends React.Component {
         this.setState({isAlive:!this.state.isAlive});
     }
 
-    render(){
-        return (<div className={this.getClass()} 
+    render = () => (<div className={this.getClass()} 
                     onClick={()=>this.changeStatus()}>
                 </div>);
-    }
+    
 }

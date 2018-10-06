@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Grid from './grid';
+import Controls from './controls'
 import './styles.css'
 
 class Game extends React.Component{
@@ -13,7 +14,10 @@ class Game extends React.Component{
         return(
         <div>
             <Grid rows={30} cols={30} ref={this.ref}></Grid>
-            <button onClick={()=>this.ref.current.update()}>Play</button>
+            <Controls 
+                update={() => this.ref.current.update()}
+                clean={()=>this.ref.current.clean()}
+            ></Controls>
         </div>);
     }
 }
