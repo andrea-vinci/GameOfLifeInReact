@@ -1,0 +1,23 @@
+.box {
+    height: 20px;
+    width: 20px;
+    border: 1px solid #999;
+    margin-right: -1px;
+    margin-top: -1px;
+    float: left;
+}
+
+.box.black{
+    background-color:#414141;
+}
+
+.box.white{
+    background-color: white;
+}
+
+.row:after{
+    clear: both;
+    content: "";
+    display: table;
+}
+
