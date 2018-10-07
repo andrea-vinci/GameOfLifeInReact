@@ -38,7 +38,8 @@ export default class Controls extends React.Component{
     render(){
         return (<div className="controls">
             <div className="control-container control-slider">
-                <Slider name="size" min={10} max={30} value={15} onValueChange={(v)=>this.changeSize(v)}></Slider>
+                <Slider name="size" min={10} max={30} value={15} 
+                    onValueChange={(v)=>this.changeSize(v)}></Slider>
             </div>
             <div className="control-container control-buttons">
                 <button className="control" onClick={() => this.update()}>Step</button>
@@ -46,7 +47,9 @@ export default class Controls extends React.Component{
                 <button className="control" onClick={() => this.playStop()}>{this.state.canPlay ? "Play" : "Stop"}</button>
             </div>
             <div className="control-container control-slider">
-                <Slider className="control-container" name="speed" onValueChange={(v)=>this.speed=1/v} min={1} max={20} value={2}></Slider>
+                <Slider className="control-container" 
+                    name="speed" onValueChange={(v)=>this.speed=1/v} 
+                    min={1} max={50} value={10}></Slider>
             </div>
         </div>);
     }

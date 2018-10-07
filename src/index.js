@@ -7,13 +7,15 @@ import './styles.css'
 class Game extends React.Component{
     constructor(props){
         super(props);
-        this.state = {size: 20};
+        console.log(window.innerWidth);
+        this.state = {size:  window.innerWidth>500 ? 25 : 15};
     }
 
     render(){
         this.ref=React.createRef();
         return(
         <div className="game">
+        <h1>Game Of Life</h1>
             <Controls 
                 update={() => this.ref.current.update()}
                 refresh={() => this.ref.current.refresh()}
