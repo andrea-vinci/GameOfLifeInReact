@@ -34,6 +34,6 @@ export default class Grid extends React.Component{
             </div>)
         );
 
-        return (<div>{rows}</div>);
+        return (<div className="grid">{rows}</div>);
     }
 }

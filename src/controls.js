@@ -30,7 +30,7 @@ export default class Controls extends React.Component{
       }
 
     render(){
-        return (<div>
+        return (<div className="controls">
             <button className="control" onClick={() => this.update()}>Step</button>
             <button className="control" onClick={() => this.props.clean()}>Clean</button>
             <button className="control" onClick={() => this.playStop()}>{this.state.canPlay ? "Play" : "Stop"}</button>
