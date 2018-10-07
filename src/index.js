@@ -13,7 +13,7 @@ class Game extends React.Component{
     render(){
         return(
         <div>
-            <Grid rows={30} cols={30} ref={this.ref}></Grid>
+            <Grid rows={18} cols={18} ref={this.ref}></Grid>
             <Controls 
                 update={() => this.ref.current.update()}
                 refresh={() => this.ref.current.refresh()}

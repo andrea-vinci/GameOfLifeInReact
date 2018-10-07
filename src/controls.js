@@ -9,20 +9,24 @@ export default class Controls extends React.Component{
         this.speed=1/2;
     }
 
-    update = () => {
+    delay = (timeout)=> new Promise((resolve) => setTimeout(resolve,timeout));
+
+    update = async () => {
         this.props.update();
-        this.props.refresh();
+        await this.props.refresh();
     }
     
-    playStop(){
-        if(this.state.canPlay){
+    play = async () =>{
+       while(!this.state.canPlay){
+            let wait = this.delay(2000*this.speed);
             this.props.update();
-            this.interval = setInterval(this.update, 2000*this.speed);
+            await this.props.refresh();
+            await wait;
         }
-        else{
-            clearInterval(this.interval);
-        }
-        this.setState({canPlay:!this.state.canPlay});
+    };
+
+    playStop(){
+        this.setState({canPlay:!this.state.canPlay},this.play);
       }
 
     render(){

@@ -40,10 +40,11 @@ export default class Box extends React.Component {
         else if(num_alive===3) this.nextStepAlive = true;
     }
 
-    refresh(){
+    refresh = () => new Promise((resolve) =>{
         if(this.nextStepAlive !== this.state.isAlive)
-            this.setState({isAlive: this.nextStepAlive});
-    }
+            this.setState({isAlive: this.nextStepAlive}, resolve);
+            resolve();
+    });
 
     clean() {
         this.setState({isAlive: false});
