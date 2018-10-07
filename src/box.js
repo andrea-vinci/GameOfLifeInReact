@@ -58,6 +58,7 @@ export default class Box extends React.Component {
 
     changeStatus(){
         this.setState({isAlive:!this.state.isAlive});
+        this.nextStepAlive = !this.state.isAlive;
     }
 
     onMouseOver = (e) =>{
