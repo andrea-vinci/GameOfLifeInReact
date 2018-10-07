@@ -55,8 +55,17 @@ export default class Box extends React.Component {
         this.setState({isAlive:!this.state.isAlive});
     }
 
+    onMouseOver = (e) =>{
+        e.preventDefault();
+        if(e.buttons===1)this.changeStatus();
+    }
+
     render = () => (<div className={this.getClass()} 
-                    onClick={()=>this.changeStatus()}>
+                    onClick={()=>this.changeStatus()}
+                    onMouseOver={this.onMouseOver}
+                    onMouseDown={(e)=> e.preventDefault() }
+                    >
+                    
                 </div>);
     
 }
