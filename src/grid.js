@@ -14,10 +14,10 @@ export default class Grid extends React.Component{
     
     clean = () => this.state.boxes.forEach(f => f.ref.current.clean());
 
-    createBox(r,c,n){
+    createBox(r,c,cols){
         let ref = React.createRef();
-        let position = r*n+c;
-        let box = ( <Box key={position} position={position} size={n} 
+        let position = r*cols+c;
+        let box = ( <Box key={position} position={position} cols={cols} 
                         boxes={this.state.boxes} ref={ref}></Box>);
         this.state.boxes.push(box);
         this.state.refs.push(ref);

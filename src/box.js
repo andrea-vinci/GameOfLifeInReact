@@ -10,21 +10,25 @@ export default class Box extends React.Component {
     }
 
     isAlive = () => this.state.isAlive;
-    getRow = () => (this.props.position-this.getCol())/this.props.size;
-    getCol = () => this.props.position%this.props.size;
+    getRow = () => (this.props.position-this.getCol())/this.props.cols;
+    getCol = () => this.props.position%this.props.cols;
 
-    getNeighborhood(r, c, n){
+    getNeighborhood(r, c, cols){
+        let n_row=this.props.boxes.length/cols;
+        let r1 = ((r-1+n_row)%n_row); let c1 = (c-1+cols)%cols;
+        let r2 = ((r+n_row)%n_row);   let c2 = (c+cols)%cols;
+        let r3 = ((r+1+n_row)%n_row); let c3 = (c+1+cols)%cols;
         return [
-            (r-1)*n+c-1,    (r-1)*n+c,  (r-1)*n+c+1,
-            r*n+c-1,                    r*n+c+1,
-            (r+1)*n+c-1,    (r+1)*n+c,  (r+1)*n+c+1]
+            r1*cols+c1, r1*cols+c2, r1*cols+c3,
+            r2*cols+c1,            r2*cols+c3,
+            r3*cols+c1, r3*cols+c2, r3*cols+c3]
         .map((p) => this.props.boxes[p])
         .map((box) => box ? box.ref.current.isAlive() : false);
     }
     
     nextStep(){
         let num_alive = this
-        .getNeighborhood(this.getRow(), this.getCol(), this.props.size)
+        .getNeighborhood(this.getRow(), this.getCol(), this.props.cols)
         .map((isAlive)=> isAlive ? 1 : 0)
         .reduce((prev,next) => prev + next,0);
 
