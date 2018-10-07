@@ -1,29 +1,10 @@
 .game{
     text-align: center;
 }
+
 .grid{
+    margin-top: 10px;
     display: inline-block;
-}
-
-.controls{
-    margin-top: 5px;
-}
-
-.box {
-    height: 20px;
-    width: 20px;
-    border: 1px solid #999;
-    margin-right: -1px;
-    margin-top: -1px;
-    float: left;
-}
-
-.box.black{
-    background-color:#414141;
-}
-
-.box.white{
-    background-color: white;
 }
 
 .row:after{
@@ -32,8 +13,4 @@
     display: table;
 }
 
-.control{
-    width: 55px;
-    margin-top: 10px;
-    margin-right: 10px;
-}
+

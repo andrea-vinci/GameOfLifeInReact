@@ -1,5 +1,5 @@
 import React from 'react'
-import './styles.css'
+import './box.css'
 
 export default class Box extends React.Component {
 

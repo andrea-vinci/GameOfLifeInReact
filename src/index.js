@@ -7,18 +7,20 @@ import './styles.css'
 class Game extends React.Component{
     constructor(props){
         super(props);
-        this.ref=React.createRef();
+        this.state = {size: 20};
     }
 
     render(){
+        this.ref=React.createRef();
         return(
         <div className="game">
-            <Grid rows={18} cols={18} ref={this.ref}></Grid>
             <Controls 
                 update={() => this.ref.current.update()}
                 refresh={() => this.ref.current.refresh()}
                 clean={()=>this.ref.current.clean()}
+                onChangeSize={(s)=> this.setState({size:s})}
             ></Controls>
+            <Grid rows={this.state.size} cols={this.state.size} ref={this.ref}></Grid>
         </div>);
     }
 }

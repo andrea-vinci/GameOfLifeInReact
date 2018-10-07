@@ -5,7 +5,7 @@ export default class Slider extends React.Component{
 
     constructor(props){
         super(props);
-        this.state = {value:2};
+        this.state = {value:this.props.value};
     }
 
     handleSliderChange(event){
@@ -18,9 +18,15 @@ export default class Slider extends React.Component{
 
     render(){
         return (
-            <input type="range" min="1" max="20" value={this.state.value} 
+            <div>
+                <p className="slider-title">{this.props.name}</p>
+            <input type="range" 
+            min={this.props.min} 
+            max={this.props.max} 
+            value={this.state.value} 
             onChange={(e) => this.handleSliderChange(e)}
             className="slider"/>
+            </div>
         );
     }
 

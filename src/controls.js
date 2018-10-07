@@ -1,5 +1,6 @@
 import React from 'react'
 import Slider from './Helpers/slider'
+import './controls.css'
 
 export default class Controls extends React.Component{
     
@@ -27,14 +28,26 @@ export default class Controls extends React.Component{
 
     playStop(){
         this.setState({canPlay:!this.state.canPlay},this.play);
-      }
+    }
+
+    changeSize(v){
+        if(this.props.onChangeSize)
+            this.props.onChangeSize(parseInt(v));
+    }
 
     render(){
         return (<div className="controls">
-            <button className="control" onClick={() => this.update()}>Step</button>
-            <button className="control" onClick={() => this.props.clean()}>Clean</button>
-            <button className="control" onClick={() => this.playStop()}>{this.state.canPlay ? "Play" : "Stop"}</button>
-            <Slider onValueChange={(v)=>this.speed=1/v}></Slider>
+            <div className="control-container control-slider">
+                <Slider name="size" min={10} max={30} value={15} onValueChange={(v)=>this.changeSize(v)}></Slider>
+            </div>
+            <div className="control-container control-buttons">
+                <button className="control" onClick={() => this.update()}>Step</button>
+                <button className="control" onClick={() => this.props.clean()}>Clean</button>
+                <button className="control" onClick={() => this.playStop()}>{this.state.canPlay ? "Play" : "Stop"}</button>
+            </div>
+            <div className="control-container control-slider">
+                <Slider className="control-container" name="speed" onValueChange={(v)=>this.speed=1/v} min={1} max={20} value={2}></Slider>
+            </div>
         </div>);
     }
 }

@@ -16,3 +16,19 @@
     background: #414141;
     cursor: pointer;
 }
+
+.slider-title{
+    margin-bottom: -4px;
+    font-family: monospace;
+}
+
+@media screen and (max-width: 440px) {
+    .slider{
+        width: 140px;
+    }
+
+    .slider::-webkit-slider-thumb {
+        width: 20px;
+        height: 20px;
+    }
+}
