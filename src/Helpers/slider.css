@@ -1,0 +1,18 @@
+.slider{
+    vertical-align: middle;
+    -webkit-appearance: none;
+    background: #b8b8b8;
+    border-radius: 10px;
+    height: 8px;
+    width: 100px;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%; 
+    background: #414141;
+    cursor: pointer;
+}

@@ -1,17 +1,19 @@
 import React from 'react'
+import Slider from './Helpers/slider'
 
 export default class Controls extends React.Component{
     
     constructor(props){
         super(props);
         this.state = {canPlay: true};
+        this.speed=1/2;
     }
 
     update = () => this.props.update()
     
     playStop(){
         if(this.state.canPlay){
-            this.interval = setInterval(this.update, 1000);
+            this.interval = setInterval(this.update, 2000*this.speed);
         }
         else{
             clearInterval(this.interval);
@@ -20,11 +22,11 @@ export default class Controls extends React.Component{
       }
 
     render(){
-        return (<div >
+        return (<div>
             <button className="control" onClick={() => this.update()}>Step</button>
             <button className="control" onClick={() => this.props.clean()}>Clean</button>
-            <button className="control" onClick={() => this.playStop()}>
-            {this.state.canPlay ? "Play" : "Stop"}</button>
+            <button className="control" onClick={() => this.playStop()}>{this.state.canPlay ? "Play" : "Stop"}</button>
+            <Slider onValueChange={(v)=>this.speed=1/v}></Slider>
         </div>);
     }
 }
