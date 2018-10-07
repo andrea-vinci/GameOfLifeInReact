@@ -8,11 +8,9 @@ export default class Grid extends React.Component{
         this.state = {boxes:[], refs:[]};
     }
 
-    update = () => 
-    {   
-        this.state.boxes.forEach(f =>  f.ref.current.nextStep());
-        this.state.boxes.forEach(f =>  f.ref.current.refresh());
-    }
+    refresh = () => this.state.boxes.forEach(f =>  f.ref.current.refresh());
+
+    update = () => this.state.boxes.forEach(f =>  f.ref.current.nextStep());
     
     clean = () => this.state.boxes.forEach(f => f.ref.current.clean());
 

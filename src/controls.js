@@ -9,10 +9,14 @@ export default class Controls extends React.Component{
         this.speed=1/2;
     }
 
-    update = () => this.props.update()
+    update = () => {
+        this.props.update();
+        this.props.refresh();
+    }
     
     playStop(){
         if(this.state.canPlay){
+            this.props.update();
             this.interval = setInterval(this.update, 2000*this.speed);
         }
         else{

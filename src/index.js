@@ -16,6 +16,7 @@ class Game extends React.Component{
             <Grid rows={30} cols={30} ref={this.ref}></Grid>
             <Controls 
                 update={() => this.ref.current.update()}
+                refresh={() => this.ref.current.refresh()}
                 clean={()=>this.ref.current.clean()}
             ></Controls>
         </div>);
